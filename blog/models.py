@@ -5,8 +5,10 @@ class Post(models.Model):
     title = models.CharField(max_length=30)
     content = models.TextField()
 
-    created_at = models.DateTimeField(auto_now_add=True)
-
+    created_at = models.DateTimeField
 
     # 추후 author
+
+    def __str__(self):
+        return f'[{self.pk}]{self.title}   {self.created_at}'
 
