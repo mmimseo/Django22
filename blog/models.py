@@ -2,13 +2,17 @@ from django.db import models
 
 # Create your models here.
 class Post(models.Model):
-    title = models.CharField(max_length=30)
-    content = models.TextField()
+    title = models.CharField(max_length=30)  #포스트 제목
+    content = models.TextField()             #포스트 내용
 
-    created_at = models.DateTimeField
+    created_at = models.DateTimeField(auto_now_add=True)  #시간
+    updated_at = models.DateTimeField(auto_now=True)
 
     # 추후 author
 
     def __str__(self):
         return f'[{self.pk}]{self.title}   {self.created_at}'
 
+
+    def get_absolute_url(self):
+        return f'/blog/{self.pk}/'
