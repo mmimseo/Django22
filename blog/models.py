@@ -5,6 +5,9 @@ class Post(models.Model):
     title = models.CharField(max_length=30)  #포스트 제목
     content = models.TextField()             #포스트 내용
 
+    head_image = models.ImageField(upload_to='blog/images/%Y/%m/%d/', blank=True)
+    #Y: 2022, #y:22
+
     created_at = models.DateTimeField(auto_now_add=True)  #시간
     updated_at = models.DateTimeField(auto_now=True)
 
