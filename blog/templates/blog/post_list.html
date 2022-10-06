@@ -99,7 +99,7 @@
                 {% if p.head_image %}
               <a href="#!"><img class="card-img-top" src="{{ p.head_image.url }}" alt="{{p}}의 head_image" /></a>
                 {% else %}
-                <img class="card-img-top" src="http://picsum.photos/800/200" alt="random image" />
+                <img class="card-img-top" src="http://picsum.photos/seed/{{p.pk}}/800/200" alt="random image"/>
                 {% endif %}
 
               <div class="card-body">
@@ -111,7 +111,7 @@
                 <div class="small tect-muted"> {{ p.created_at}} </div>
                 <a href="#">작성자(추후 개발 예정)</a>
                 </div>
-            </div> </div>
+            </div>
 
               {% endfor %}                  <!--post title end-->
             <!-- Pagination-->

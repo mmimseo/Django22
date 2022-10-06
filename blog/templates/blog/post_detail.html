@@ -49,6 +49,8 @@
                         <figure class="mb-4">
                             {% if p.head_image %}
                             <img class="img-fluid rounded" src="{{ post.head_image.url }}" alt="{{ post.title }}의 head_image" />
+                            {% else %}
+                            <img class="img-fluid rounded" src="http://picsum.photos/seed/{{post.pk}}/800/200"" alt="{{ post.title }}의 head_image" />
                             {% endif %}
                         </figure>
                         <!-- Post content-->
