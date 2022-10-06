@@ -91,11 +91,17 @@
 
       <div class="container">
         <div class="row">
+            <div class="col-md-8 col-lg-9">  <!--화면상 좌측-->
 
             {% for p in post_list %}
-          <div class="col-md-8 col-lg-9">  <!--화면상 좌측-->
+
             <div class="card mb-4">        <!--post title start / 3개-->
+                {% if p.head_image %}
               <a href="#!"><img class="card-img-top" src="{{ p.head_image.url }}" alt="{{p}}의 head_image" /></a>
+                {% else %}
+                <img class="card-img-top" src="http://picsum.photos/800/200" alt="random image" />
+                {% endif %}
+
               <div class="card-body">
                   <h2 class="card-title">{{ p.title }}</h2>
                   <p class="card-text">{{ p.content}}</p>
