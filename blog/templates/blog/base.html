@@ -10,21 +10,21 @@
     <script src="https://kit.fontawesome.com/4e6ed3b07e.js" crossorigin="anonymous"></script>
 </head>
 <body>
-{% include 'blog/navbar.html'%}
+        {% include 'blog/navbar.html' %}
 
       <div class="container">
         <div class="row">
-            <div class ="col-md-8 col-lg-9" id="main-area">
+            <div class ="col-md-8 col-lg-9" id="main-area">     <!-- 왼쪽 부분 -->
                 {% block main_area %}
                 {% endblock %}
             </div>
-            <div class="col-mf-4 col-lg-3">
-                {% include 'blog/sidebar/html'%}
+            <div class="col-mf-4 col-lg-3">                     <!-- 오른쪽 부분 -->
+                {% include 'blog/sidebar.html' %}
             </div>
         </div>
       </div>
 
-{% include 'blog/footer.html'%}
+          {% include 'blog/footer.html'%}
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></scr>
