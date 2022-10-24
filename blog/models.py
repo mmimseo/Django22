@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 import os
 
 # Create your models here.
+
 class Post(models.Model):
     title = models.CharField(max_length=30)  #포스트 제목
     hook_text = models.CharField(max_length=100, blank=True)
