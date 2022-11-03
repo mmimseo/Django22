@@ -5,26 +5,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block head_title %}Blog{% endblock %}</title>
+    <title>{% block head_title %}Blog{% endblock %}</title> <!--post.detail-->
     <link href="{% static 'blog/bootstrap4/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="screen"></link>
-    <script src="https://kit.fontawesome.com/4e6ed3b07e.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/4e6ed3b07e.js" crossorigin="anonymous"></script> <!--아이콘적용-->
 </head>
 <body>
-        {% include 'blog/navbar.html' %}
+        {% include 'blog/navbar.html' %} <!-- include navbar, 모듈화 -->
 
       <div class="container">
         <div class="row">
             <div class ="col-md-8 col-lg-9" id="main-area">     <!-- 왼쪽 부분 -->
-                {% block main_area %}
+                {% block main_area %}  <!-- post_list.html -->
                 {% endblock %}
             </div>
             <div class="col-mf-4 col-lg-3">                     <!-- 오른쪽 부분 -->
-                {% include 'blog/sidebar.html' %}
+                {% include 'blog/sidebar.html' %} <!-- include sidebar, 모듈화 -->
             </div>
         </div>
       </div>
 
-          {% include 'blog/footer.html'%}
+          {% include 'blog/footer.html'%} <!-- include footer, 모듈화 -->
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></scr>

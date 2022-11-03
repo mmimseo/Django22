@@ -2,9 +2,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [ # IP주소/blog/
-    path('', views.PostList.as_view()),
-    path('<int:pk>/', views.PostDetail.as_view())
+    path('', views.PostList.as_view()),  ## Listview 목록페이지 : CBV ##
+    path('<int:pk>/', views.PostDetail.as_view()), ## DetailView : CBV##
+    path('category/<str:slug>/', views.category_page),
 
-    #path('', views.index), # IP주소/blog/
+    #path('', views.index), # IP주소/blog/     ##view의 html : FBV 연결##
     #path('<int:pk>/', views.single_post_page)
 ]

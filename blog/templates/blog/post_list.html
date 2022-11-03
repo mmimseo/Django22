@@ -1,28 +1,48 @@
 {% extends 'blog/base.html' %}
 
-{% block main_area %}
+{% block main_area %}   <!-- base.html의 main_area 부분, 모듈화 -->
+                <h2>Blog
+                    {% if category %}
+                    - <span class="badge badge-secondary">{{category}}</span>
+                    {% endif %}
+                </h2>
+
                 {% if post_list.exists %}
-                {% for p in post_list %}
-            <div class="card mb-4">        <!--post title start / 3개-->
-                {% if p.head_image %}
+            {% for p in post_list %}     <!-- ListView 모델명_list.html 연결 -->
+            <div class="card mb-4" id="post-{{}p.pk}">        <!--post title start / 3개-->
+                {% if p.head_image %}       <!-- ## head image 출력 ## -->
               <a href="#!"><img class="card-img-top" src="{{ p.head_image.url }}" alt="{{p}}의 head_image" /></a>
-                {% else %}
+                {% else %}                  <!-- ## head image 없을 때 ##-->
                 <img class="card-img-top" src="http://picsum.photos/seed/{{p.pk}}/800/200" alt="random image"/>
                 {% endif %}
               <div class="card-body">
-                  <h2 class="card-title">{{ p.title | upper }}</h2>
+                  {% if p.category %}
+                    <span class="badge badge-secondary float-right">
+                    <a href="{{p.category.get_absolute_url}}">
+                        {{ p.category }}
+                    </a>
+                    </span>
+                  {% else %}
+                    <span class="badge badge-secondary float-right">
+                        <a href="/blog/category/no_category/">
+                            미분류
+                        </a>
+                    </span>
+                  {% endif%}
+                  <h2 class="card-title">{{ p.title | upper }}</h2> <!--upper 대문자, lower 소문자-->
                   {% if p.hook_text %}
                   <h5 class="text-muted"> {{ p.hook_text }}</h5>
                   {% endif %}
-                  <p class="card-text">{{ p.content | truncatechars:100 }}</p>
+                  <p class="card-text">{{ p.content | truncatechars:100 }}</p> <!--미리보기-->
                   <a class="btn btn-primary" href="{{ p.get_absolute_url }}">Read more →</a>
+                                            <!-- model에 생성한 pk를 받아서 detail 연결 -->
               </div>
                 <div class="card-footer">
                 <div class="small tect-muted"> {{ p.created_at | date:"Y-m-d h:m:s" }} </div>
                 <a href="#">{{ p.author | upper }}</a>
                 </div>
             </div>
-              {% endfor %}                  <!--post title end-->
+            {% endfor %}                  <!--post title end-->
                 {% else %}
                 <h5>아직 게시물이 없습니다.</h5>
                 {% endif %}

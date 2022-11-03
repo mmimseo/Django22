@@ -1,5 +1,5 @@
 {% extends 'blog/base.html' %}
-{% block head_title %}
+{% block head_title %}        <!--base.html title-->
     {{ post.title }} - Blog
 {% endblock %}
 {% block main_area %}
@@ -8,30 +8,37 @@
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->
-                            <h1 class="fw-bolder mb-1"> {{ post.title | lower }} </h1>
+                            <h1 class="fw-bolder mb-1"> {{ post.title | lower }} </h1> <!-- | upper 대문자, lower 소문자 -->
                             {% if post.hook_text %}
-                            <h5 class="text-muted">{{ post.hook_text }}</h5>
+                            <h5 class="text-muted">{{ post.hook_text }}</h5> <!--text-muted 글씨 흐리게-->
                             {% endif %}
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">
-                                Posted on {{ post.created_at | date:"Y-m-d h:m:s" }} by {{ post.author|upper }}
-                            </div>
+                            <div class="text-muted fst-italic mb-2">    <!-- 날짜 출력 Y: 2022, y:22-->
+                                Posted on {{ post.created_at | date:"Y-m-d h:m:s" }} by {{ post.author|upper }} <!--author 작성자-->
+                            </div>                             <!--디테일에 보이는 날짜, 시간 한국식 표현-->
                             <!-- Post categories-->
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
+                            {% if post.category %}
+                            <a class="badge bg-secondary text-decoration-none link-light" href="/blog/{{category.get_absolute_url}}">
+                                {{post.category}}
+                            </a>
+                            {% else %}
+                            <a class="badge bg-secondary text-decoration-none link-light" href="/blog/category/no_category">
+                                미분류
+                            </a>
+                            {% endif %}
                         </header>
                         <!-- Preview image figure-->
                         <figure class="mb-4">
-                            {% if p.head_image %}
+                            {% if p.head_image %}            <!-- ## head image 출력 ## -->
                             <img class="img-fluid rounded" src="{{ post.head_image.url }}" alt="{{ post.title }}의 head_image" />
-                            {% else %}
+                            {% else %}                       <!-- ## head image 없을 때 ##-->
                             <img class="img-fluid rounded" src="http://picsum.photos/seed/{{post.pk}}/800/200"" alt="{{ post.title }}의 head_image" />
                             {% endif %}
                         </figure>
                         <!-- Post content-->
                         <section class="mb-5">
                             <p class="fs-5 mb-4">{{ post.content }}</p>
-                            {% if post.file_upload %}
+                            {% if post.file_upload %}       <!--파일 업로드 아이콘-->
                             <a href="{{ post.file_upload.url }}" class="btn btn-outline-dark" role="button">
                                 {% if post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
                                 <i class="fa-regular fa-file-excel"></i>

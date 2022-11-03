@@ -22,7 +22,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure--(63a$_6()wa%8=vw02)7bj7g$#(#wu2&98024ccj#2=zoozzn'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -38,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
+    'blog',                 ## 앱 생성 후, 이름 추가 ##
     'single_pages'
 ]
 
@@ -108,11 +107,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Seoul'
+TIME_ZONE = 'Asia/Seoul'     ## 시간 변경 ##
 
 USE_I18N = True
 
-USE_TZ = False
+USE_TZ = False              ## True > False ##
 
 
 # Static files (CSS, JavaScript, Images)
