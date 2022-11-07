@@ -18,7 +18,7 @@
                             </div>                             <!--디테일에 보이는 날짜, 시간 한국식 표현-->
                             <!-- Post categories-->
                             {% if post.category %}
-                            <a class="badge bg-secondary text-decoration-none link-light" href="/blog/{{category.get_absolute_url}}">
+                            <a class="badge bg-secondary text-decoration-none link-light" href="{{post.category.get_absolute_url}}">
                                 {{post.category}}
                             </a>
                             {% else %}
@@ -37,7 +37,18 @@
                         </figure>
                         <!-- Post content-->
                         <section class="mb-5">
-                            <p class="fs-5 mb-4">{{ post.content }}</p>
+                                <p class="fs-5 mb-4">{{ post.content }}
+                                    {% if post.tags.ecists %}
+                                    <i class="fas fa-tag"></i>
+                                {% for t in p.tags.iterator %}
+                                 <span class="badge bagde-pill badge-light">
+                                    <a href="{{t.get_absolute_url}}">
+                                         {{t}}
+                                    </a>
+                                 </span>
+                                {% endfor %}
+                            {% endif %}
+                            <br><br>
                             {% if post.file_upload %}       <!--파일 업로드 아이콘-->
                             <a href="{{ post.file_upload.url }}" class="btn btn-outline-dark" role="button">
                                 {% if post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}

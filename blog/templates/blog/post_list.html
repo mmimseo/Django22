@@ -5,9 +5,15 @@
                     {% if category %}
                     - <span class="badge badge-secondary">{{category}}</span>
                     {% endif %}
+                    {% if tag %}
+                    - <i class="fas fa-tag"></i>
+                    <span class="badge badge-secondary">
+                        {{tag}} ({{tag.post_set.count}})
+                    </span>
+                    {% endif %}
                 </h2>
 
-                {% if post_list.exists %}
+            {% if post_list.exists %}
             {% for p in post_list %}     <!-- ListView 모델명_list.html 연결 -->
             <div class="card mb-4" id="post-{{}p.pk}">        <!--post title start / 3개-->
                 {% if p.head_image %}       <!-- ## head image 출력 ## -->
@@ -33,7 +39,18 @@
                   {% if p.hook_text %}
                   <h5 class="text-muted"> {{ p.hook_text }}</h5>
                   {% endif %}
-                  <p class="card-text">{{ p.content | truncatechars:100 }}</p> <!--미리보기-->
+                  <p class="card-text">{{ p.content | truncatechars:100 }}</p>
+                    {% if p.tags.exists %}
+                  <i class="fas fa-tag"></i>
+                    {% for t in p.tags.iterator %}
+                  <span class="badge bagde-pill badge-light">
+                      <a href="{{t.get_absolute_url}}">
+                         {{t}}
+                      </a>
+                  </span>
+                    {% endfor %}
+                    {% endif %}
+                  <br><br>
                   <a class="btn btn-primary" href="{{ p.get_absolute_url }}">Read more →</a>
                                             <!-- model에 생성한 pk를 받아서 detail 연결 -->
               </div>
