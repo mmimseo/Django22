@@ -25,7 +25,7 @@ class Category(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=30)
-    hook_text = models.CharField(max_length=100, blank=True)
+    hook_text = models.CharField(max_length=100, blank=True)  #각 필드의 정의(char, text 등)를 미리 정함
     content = models.TextField()
 
     head_image = models.ImageField(upload_to='blog/images/%Y/%m/%d/', blank=True) #post_list - head image 출력

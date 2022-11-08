@@ -1,6 +1,14 @@
 {% extends 'blog/base.html' %}
 
 {% block main_area %}   <!-- base.html의 main_area 부분, 모듈화 -->
+            {% if user.is_authenticated %}
+                {% if user.is_superuser or user.is_staff %}  <!--만족해야 post작성 버튼 나타남-->
+                    <a class="btn btn-info float-right" href="/blog/create_post/" role="button">
+                        <i class="fas fa-pen"> New Post </i>
+                    </a>
+                {% endif %}
+            {% endif %}
+
                 <h2>Blog
                     {% if category %}
                     - <span class="badge badge-secondary">{{category}}</span>
@@ -13,7 +21,7 @@
                     {% endif %}
                 </h2>
 
-            {% if post_list.exists %}
+            {% if post_list.exists %}  <!--postlist 있을 때 반복문 출력-->
             {% for p in post_list %}     <!-- ListView 모델명_list.html 연결 -->
             <div class="card mb-4" id="post-{{}p.pk}">        <!--post title start / 3개-->
                 {% if p.head_image %}       <!-- ## head image 출력 ## -->
