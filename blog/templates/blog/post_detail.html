@@ -27,6 +27,11 @@
                             </a>
                             {% endif %}
                         </header>
+                        {% if user.authenticated and user == post.author %}
+                            <a class="btn btn-info float-right" href="/blog/update_post/{{post.pk}}/" role="button">
+                                <i class="fas fa-pan"> Edit Post </i>
+                            </a>
+                        {% endif %}
                         <!-- Preview image figure-->
                         <figure class="mb-4">
                             {% if p.head_image %}            <!-- ## head image 출력 ## -->
