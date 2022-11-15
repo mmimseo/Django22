@@ -35,7 +35,7 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, *, object_list=None, **kwargs):  ##추가인자##
         context = super(PostUpdate,self).get_context_data()
-        if self.object.tags.exixt:
+        if self.object.tags.exists:
             tag_str_list = list()
             for t in self.object.tags.all():
                 tag_str_list.append(t.name)
