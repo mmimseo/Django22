@@ -27,9 +27,9 @@
                             </a>
                             {% endif %}
                         </header>
-                        {% if user.authenticated and user == post.author %}
+                        {% if user.is_authenticated and user == post.author %}
                             <a class="btn btn-info float-right" href="/blog/update_post/{{post.pk}}/" role="button">
-                                <i class="fas fa-pan"> Edit Post </i>
+                                <i class="fas fa-pen"> Edit Post </i>
                             </a>
                         {% endif %}
                         <!-- Preview image figure-->
