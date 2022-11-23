@@ -2,7 +2,7 @@
 
 {% block main_area %}   <!-- base.html의 main_area 부분, 모듈화 -->
             {% if user.is_authenticated %}
-                {% if user.is_superuser or user.is_staff %}  <!--만족해야 post작성 버튼 나타남-->
+                {% if user.is_superuser or user.is_staff %}  <!-- post 작성 버튼 -->
                     <a class="btn btn-info float-right" href="/blog/create_post/" role="button">
                         <i class="fas fa-pen"> New Post </i>
                     </a>
@@ -66,7 +66,7 @@
                 <div class="small tect-muted"> {{ p.created_at | date:"Y-m-d h:m:s" }} </div>
                 <a href="#">{{ p.author | upper }}</a>
                 </div>
-            </div>
+                 </div>
             {% endfor %}                  <!--post title end-->
                 {% else %}
                 <h5>아직 게시물이 없습니다.</h5>
@@ -84,4 +84,4 @@
                   <li class="page-item"><a class="page-link" href="#!">Older</a></li>
               </ul>
             </nav>
-{% endblock%}
+{% endblock %}
