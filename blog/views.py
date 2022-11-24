@@ -83,6 +83,7 @@ class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 class PostList(ListView):   ## CBV ##
     model = Post
     ordering = '-pk'
+    paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):  ##추가인자##
         context = super(PostList,self).get_context_data()
